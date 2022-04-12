@@ -4,12 +4,13 @@
 #
 Name     : pypi-docstring_parser
 Version  : 0.13
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/e7/18/8476fa1363bf038caf7b88cab473c6f9a821a5886c98364bf43d6fdea8a7/docstring_parser-0.13.tar.gz
 Source0  : https://files.pythonhosted.org/packages/e7/18/8476fa1363bf038caf7b88cab473c6f9a821a5886c98364bf43d6fdea8a7/docstring_parser-0.13.tar.gz
 Summary  : "Parse Python docstrings in reST, Google and Numpydoc format"
 Group    : Development/Tools
 License  : MIT
+Requires: pypi-docstring_parser-license = %{version}-%{release}
 Requires: pypi-docstring_parser-python = %{version}-%{release}
 Requires: pypi-docstring_parser-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
@@ -18,6 +19,14 @@ BuildRequires : buildreq-distutils3
 docstring_parser
 ================
 [![Build](https://github.com/rr-/docstring_parser/actions/workflows/build.yml/badge.svg)](https://github.com/rr-/docstring_parser/actions/workflows/build.yml)
+
+%package license
+Summary: license components for the pypi-docstring_parser package.
+Group: Default
+
+%description license
+license components for the pypi-docstring_parser package.
+
 
 %package python
 Summary: python components for the pypi-docstring_parser package.
@@ -47,7 +56,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641567906
+export SOURCE_DATE_EPOCH=1649740273
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -62,6 +71,8 @@ python3 -m build --wheel --skip-dependency-check --no-isolation
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/pypi-docstring_parser
+cp %{_builddir}/docstring_parser-0.13/LICENSE.md %{buildroot}/usr/share/package-licenses/pypi-docstring_parser/1290bb40923a9df1ab0612e35b07720062b32287
 pip install --root=%{buildroot} --no-deps --ignore-installed dist/*.whl
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -69,6 +80,10 @@ echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/pypi-docstring_parser/1290bb40923a9df1ab0612e35b07720062b32287
 
 %files python
 %defattr(-,root,root,-)
