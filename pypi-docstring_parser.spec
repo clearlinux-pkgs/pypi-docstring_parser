@@ -7,7 +7,7 @@
 #
 Name     : pypi-docstring_parser
 Version  : 0.16
-Release  : 20
+Release  : 21
 URL      : https://files.pythonhosted.org/packages/08/12/9c22a58c0b1e29271051222d8906257616da84135af9ed167c9e28f85cb3/docstring_parser-0.16.tar.gz
 Source0  : https://files.pythonhosted.org/packages/08/12/9c22a58c0b1e29271051222d8906257616da84135af9ed167c9e28f85cb3/docstring_parser-0.16.tar.gz
 Summary  : Parse Python docstrings in reST, Google and Numpydoc format
